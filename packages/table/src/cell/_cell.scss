@@ -5,6 +5,7 @@
 
 .bp-table-cell {
   @include cell-cursors();
+
 }
 
 .bp-table-cell,
@@ -15,7 +16,29 @@
   .pt-large & {
     @include cell-large();
   }
+
+  &.bp-table-cell-loading {
+    display: flex;
+    align-items: center;
+  }
 }
+
+.bp-table-cell-skeleton {
+  animation: 1.75s linear 0s infinite normal both running glow;
+  flex: 1;
+  height: $pt-grid-size - 4px;
+  border-radius: $pt-border-radius;
+}
+
+@mixin skeleton-margin($margin) {
+  .bp-table-cell-skeleton-#{$margin} {
+    margin-right: $margin * 1px;
+  }
+}
+@include skeleton-margin(0);
+@include skeleton-margin(5);
+@include skeleton-margin(10);
+@include skeleton-margin(15);
 
 .bp-table-striped {
   .bp-table-cell-ledger-even {

@@ -60,3 +60,17 @@ $dark-cell-text-color: $pt-dark-text-color;
     cursor: $select-cell-cursor;
   }
 }
+
+@keyframes glow {
+  0% {
+    background-color: $light-gray3;
+  }
+
+  50% {
+    background-color: $light-gray1;
+  }
+
+  100% {
+    background-color: $light-gray3;
+  }
+}

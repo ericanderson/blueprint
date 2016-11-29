@@ -13,7 +13,7 @@ import { Cell, Column, Table } from "../src";
 
 export class TableDollarExample extends BaseExample<{}> {
     public render() {
-        const renderCell = (rowIndex: number) => <Cell>{`$${(rowIndex * 10).toFixed(2)}`}</Cell>;
+        const renderCell = (rowIndex: number) => <Cell isLoading={true}>{`$${(rowIndex * 10).toFixed(2)}`}</Cell>;
         return (
             <Table numRows={10}>
                 <Column name="Dollars" renderCell={renderCell}/>

@@ -14,6 +14,12 @@ import { Classes, IIntentProps, IProps } from "@blueprintjs/core";
 export interface ICellProps extends IIntentProps, IProps {
     key?: string;
 
+    /**
+     * Show an animated loading shimmer of random length
+     * @default false
+     */
+    isLoading?: boolean;
+
     style?: React.CSSProperties;
 
     /**
@@ -29,9 +35,25 @@ export const emptyCellRenderer = (_rowIndex: number, _columnIndex: number) => <C
 @PureRender
 export class Cell extends React.Component<ICellProps, {}> {
     public render() {
-        const { style, tooltip, className } = this.props;
-        const content = (<div className="bp-table-truncated-text">{this.props.children}</div>);
-        const classes = classNames("bp-table-cell", className, Classes.intentClass(this.props.intent));
+        const { style, isLoading, tooltip, className } = this.props;
+        const content = isLoading
+            ? this.renderSkeleton()
+            : (<div className="bp-table-truncated-text">{this.props.children}</div>);
+        const classes = classNames(
+            "bp-table-cell",
+            {
+                "bp-table-cell-loading": isLoading,
+            },
+            Classes.intentClass(this.props.intent),
+            className
+        );
         return (<div className={classes} style={style} title={tooltip}>{content}</div>);
+    }
+
+    private renderSkeleton() {
+        const width = Math.floor(Math.random() * 4) * 5;
+        return (
+            <div className={`bp-table-cell-skeleton bp-table-cell-skeleton-${width}`} />
+        );
     }
 }

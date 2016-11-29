@@ -21,6 +21,12 @@ export interface IColumnProps extends IColumnNameProps, IProps {
     id?: string | number;
 
     /**
+     * If true, all cells show a loading shimmer.
+     * @default false
+     */
+    isLoading?: boolean;
+
+    /**
      * An instance of `ICellRenderer`, a function that takes a row and column
      * index, and returns a `Cell` React element
      */
